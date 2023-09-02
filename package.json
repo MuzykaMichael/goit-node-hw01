@@ -1,0 +1,27 @@
+{
+  "name": "goit-node-hw01",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MuzykaMichael/goit-node-hw01.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MuzykaMichael/goit-node-hw01/issues"
+  },
+  "homepage": "https://github.com/MuzykaMichael/goit-node-hw01#readme",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "nanoid": "^4.0.2"
+  }
+}
