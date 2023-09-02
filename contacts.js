@@ -1,28 +1,28 @@
 // import {nanoid} from 'nanoid'
 
 
-const fs = require('node:fs');
-
-const contactsPath = './db/contacts.json';
+const fs = require("fs").promises;
+const path = require("path")
+const contactsPath = path.join(__dirname, "db/contacts.json");
 
 
 // TODO: задокументувати кожну функцію
-function listContacts() {
-    const response = fs.readFile(contactsPath, (err,data)=>{
-        if(err){
-            console.log(err)
-        }
-        console.log('data',data.toString())
-    });
-    
+ function listContacts() {
+  const data = fs.readFile(contactsPath);
+  return JSON.parse(data.toString())    
 }
   
-  function getContactById(contactId) {
-
+ function getContactById(contactId) {
+    const contacts = listContacts();
+    const contact = contacts.filter(contact=>contact.id === contactId)
+    return contact || null;
 }
   
-  function removeContact(contactId) {
-    // ...твій код. Повертає об'єкт видаленого контакту. Повертає null, якщо контакт з таким id не знайдений.
+ function removeContact(contactId) {
+    const contacts = listContacts();
+    const contactToDeleteIndex = contacts.findIndex(contact=>contact.id === contactId)
+    if (contactToDeleteIndex === -1) return null;
+    const deleteContact = contacts.splice(contactToDeleteIndex,1);
   }
   
   function addContact(name, email, phone) {
