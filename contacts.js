@@ -1,8 +1,7 @@
-// import {nanoid} from 'nanoid'
-
-
 const fs = require("fs").promises;
+const nanoid = require("nanoid")
 const path = require("path")
+
 const contactsPath = path.join(__dirname, "db/contacts.json");
 
 
@@ -23,13 +22,19 @@ const contactsPath = path.join(__dirname, "db/contacts.json");
     const contactToDeleteIndex = contacts.findIndex(contact=>contact.id === contactId)
     if (contactToDeleteIndex === -1) return null;
     const deleteContact = contacts.splice(contactToDeleteIndex,1);
+    fs.writeFile(contactsPath,JSON.stringify(contacts,null,2))
+    return deleteContact;
   }
   
   function addContact(name, email, phone) {
-    // ...твій код. Повертає об'єкт доданого контакту. 
-  }
+    const newContact = { id: nanoid(), name, email, phone };
+    contacts.push(newContact);
+    fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
+    return newContact;  }
 
   module.exports = {
     listContacts,
     getContactById,
+    removeContact,
+    addContact,
   }
